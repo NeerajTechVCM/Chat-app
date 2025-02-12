@@ -15,7 +15,7 @@ if(process.env.NODE_ENV !="production"){
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:5173', 
+    origin: 'https://chat-app-1-q0ke.onrender.com/', 
     credentials: true, 
 }));
 // app.use(cors());

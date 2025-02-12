@@ -20,7 +20,7 @@ export default function SocketProvider({children}) {
     useEffect(()=>{
       if(auth){
         
-        const socket=io("http://localhost:8080",{
+        const socket=io("https://chat-app-1-q0ke.onrender.com",{
           query:{
             userId:auth.id,
           }
