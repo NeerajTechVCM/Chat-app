@@ -80,7 +80,7 @@ export default function Messages() {
   return (
     <>
       <div
-        className="h-[73%] overflow-y-scroll overflow-x-hidden p-4"
+        className="h-[83%] overflow-y-scroll overflow-x-hidden p-4"
         style={{ backgroundImage: `url(${background})` }}
         ref={messageContainerRef} // Attach the ref to the message container
       >

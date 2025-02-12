@@ -21,7 +21,7 @@ export default function HeaderR() {
   }
   return (
     <>
-      <div className="bg-gray-400 flex justify-between px-4 items-center ">
+      <div className="bg-gray-400 w-full  flex justify-between px-4 items-center fixed top-0 ">
         <div className="flex space-x-5 mt-3 mb-6 items-center justify-start">
           <div className='rounded-md text-blue-500 md:hidden'>
             <FaRegHandPointLeft style={{ fontSize: "25px" }} onClick={handleBack} />
