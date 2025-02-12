@@ -15,17 +15,15 @@ export default function Messages() {
   const [error, setError] = useState(null);
   const token = JSON.parse(localStorage.getItem("auth"))?.token;
   const { isTyping } = useTyping(); // Track typing state
+  const { selectconversation } = useConversation();
+  const messageContainerRef = useRef(null); // Create ref for the message container
 
   if (!token) {
     return <div className="flex h-full justify-center items-center text-xl">No token found. Please log in.</div>;
   }
 
-  const { selectconversation } = useConversation();
-  const messageContainerRef = useRef(null); // Create ref for the message container
-
   useGetSocketMsg();
 
-  // Fetch messages on conversation change
   useEffect(() => {
     if (selectconversation?._id) {
       setLoading(true);
@@ -59,6 +57,7 @@ export default function Messages() {
   }, [selectconversation, token, setMessages]);
 
   const lastMsgRef = useRef();
+
   // Scroll to the last message when messages update
   useEffect(() => {
     setTimeout(() => {
@@ -102,10 +101,9 @@ export default function Messages() {
             </div>
           ))
         )}
-        {isTyping && <Typing />} {/* Show typing animation when isTyping is true */}
+        {isTyping && <Typing />}
       </div>
-
-   
     </>
   );
 }
+
