@@ -16,7 +16,7 @@ export default function Users() {
   useEffect(() => {
     async function fetchUsers() {
       try {
-        const result = await fetch("http://localhost:8080/getAllUsers", {
+        const result = await fetch("/getAllUsers", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

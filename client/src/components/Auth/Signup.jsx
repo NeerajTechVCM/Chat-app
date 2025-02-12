@@ -67,7 +67,7 @@ const [imgLoading,setImgLoading]= useState(false)
         // setFormData(formData);
         // console.log(formData);
 
-        const result=await fetch("http://localhost:8080/signUp",{
+        const result=await fetch("/signUp",{
             method:"POST",
             headers:{
                 "Content-Type":'application/json'

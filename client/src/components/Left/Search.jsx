@@ -19,7 +19,7 @@ async function handleSubmit(e){
   e.preventDefault();
 
 
-  const result=await fetch(`http://localhost:8080/search/${query}`,{
+  const result=await fetch(`/search/${query}`,{
       method:"GET",
       headers:{
           "Content-Type":'application/json',

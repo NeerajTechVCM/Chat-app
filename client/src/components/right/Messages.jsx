@@ -31,7 +31,7 @@ export default function Messages() {
       setLoading(true);
       async function fetchMsg() {
         try {
-          const result = await fetch(`http://localhost:8080/get/${selectconversation._id}`, {
+          const result = await fetch(`/get/${selectconversation._id}`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
