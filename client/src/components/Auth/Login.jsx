@@ -31,7 +31,7 @@ export default function Login() {
         // console.log("data submitted")
         // setFormData(formData);
         console.log(formData);
-        const result=await fetch("http://localhost:8080/login",{
+        const result=await fetch("/login",{
             method:"POST",
             headers:{
                 "Content-Type":'application/json'
