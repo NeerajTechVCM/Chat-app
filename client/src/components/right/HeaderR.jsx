@@ -17,23 +17,17 @@ export default function HeaderR() {
   const { onlineUsers, userStatus } = useSocketContext(); // Assuming userStatus contains lastSeen info
   const { isTyping } = useTyping();
 
-  // Get the user's online status
+  
   const getOnlineStatus = (userId) => {
-    if (onlineUsers.includes(userId)) {
-      return "Online";
-    } else {
-      // If offline, return the last seen time
-      const lastSeen = userStatus[userId]?.lastSeen;
-      return lastSeen ? `Last seen: ${new Date(lastSeen).toLocaleString()}` : "Offline";
-    }
+    onlineUsers.includes(userId) ? 'Online' : 'Offline'
   }
 
-  // Get the color for the online status
+  
   const getOnlineDotStatus = (userId) => {
     return onlineUsers.includes(userId) ? 'bg-green-600' : 'bg-gray-600'
   }
 
-  // Get the color for the online/offline text status
+
   const getOnlineStatusColor = (userId) => {
     return onlineUsers.includes(userId) ? 'text-blue-600' : 'text-red-600'
   }

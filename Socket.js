@@ -13,7 +13,7 @@ const io = new Server(server, {
 
 const users = {}; 
 
-const userStatus = {};
+
 function getRecieverSocketId(receiverId) {
   return users[receiverId];
 }
@@ -25,16 +25,14 @@ io.on('connection', (socket) => {
   if (userId) {
     console.log(`User connected: ${userId}`);
     users[userId] = socket.id; 
-    
-    userStatus[userId] = { isOnline: true, lastSeen: null };
-    io.emit("getOnline", { users: Object.keys(users), userStatus }); 
+ 
+    io.emit("getOnline",Object.keys(users));
   }
 
   socket.on('disconnect', () => {
     delete users[userId]; 
     console.log(`User disconnected: ${userId}`);
-    userStatus[userId] = { isOnline: false, lastSeen: new Date() };
-    io.emit("getOnline", { users: Object.keys(users), userStatus }); 
+    io.emit("getOnline",Object.keys(users));
   });
 
   // Handle typing event
