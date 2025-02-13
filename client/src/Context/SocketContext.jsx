@@ -10,7 +10,6 @@ export default function SocketProvider({children}) {
   const [socket,setSocket]=useState(null);
   const [auth] = useAuth();
   const [onlineUsers,setOnlineUsers] = useState([]);
-  const [userStatus,setUserStatus] = useState({});
 
   const {selectconversation} = useConversation();
 
@@ -21,7 +20,7 @@ export default function SocketProvider({children}) {
     useEffect(()=>{
       if(auth){
         
-        const socket=io("http://localhost:8080",{
+        const socket=io("https://chat-app-1-q0ke.onrender.com",{
           query:{
             userId:auth.id,
           }
@@ -29,12 +28,20 @@ export default function SocketProvider({children}) {
         setSocket(socket);
         socket.on("getOnline",(users)=>{
 setOnlineUsers(users)
-
-
         })
 
 
+    //     socket.on('typing',(sender)=>{
     //     
+    //       if(selectConversation._id===sender._id){
+    //        setIsTyping(true)
+    //       }else{
+    //        setIsTyping(false)
+    //       }
+    //    })
+    //    socket.on('stop-typing',()=>{
+    //      setIsTyping(false)
+    //  })
         return ()=>socket.close();
 
       }else{
@@ -49,7 +56,7 @@ setOnlineUsers(users)
 
     },[auth]);
   return (
-   <SocketContext.Provider value={{socket,onlineUsers,setOnlineUsers ,userStatus,setUserStatus}}>
+   <SocketContext.Provider value={{socket,onlineUsers,setOnlineUsers}}>
     {children}
    </SocketContext.Provider>
   )
