@@ -49,7 +49,7 @@ export default function HeaderR() {
 
             <input type="checkbox" id="my_modal_7" className="modal-toggle" />
             <div className="modal" role="dialog">
-              <div className="modal-box w-[50%] md:w-[25%]">
+              <div className="modal-box ">
                 <div className="flex flex-col  justify-center text-xl items-center rounded-md mt-1 ">
                   <h1 className=' text-2xl'>Profile</h1>
                   <br />
@@ -113,7 +113,7 @@ export default function HeaderR() {
 
             <input type="checkbox" id="my_modal_7" className="modal-toggle" />
             <div className="modal" role="dialog">
-              <div className="modal-box w-[50%] md:w-[25%]">
+              <div className="modal-box ">
                 <div className="flex flex-col  justify-center text-xl items-center rounded-md mt-1 ">
                   <h1 className=' text-2xl'>Profile</h1>
                   <br />
