@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
-
+import { LuMessageCircleMore } from "react-icons/lu";
 
 export default function Login() {
     const [formData,setFormData]=useState({
@@ -65,8 +65,12 @@ export default function Login() {
     <Toaster/>
 
 <form action=""  onSubmit={handleSubmit}>
-<div className='flex w-[100%] space-x-3 h-screen justify-center items-center'> 
+<div className='flex flex-col md:flex-row w-[100%] space-x-3  h-screen justify-center items-center'> 
 
+<div className='w-[98%] bg-slate-100 flex space-x-4 border-4 fixed top-2  justify-center items-center  md:hidden text-center h-[10%] rounded-md  border-blue-800 p-6 '>
+
+<LuMessageCircleMore  style={{fontSize:"40px"}} /> <span className='text-3xl'>Chat App</span>
+</div>
 
 <div className='w-[40%] border-4 hidden md:block text-center h-[60%] rounded-md text-white border-blue-800 p-6 bg-black'>
 <h1 className='text-2xl mt-36'>Login Form</h1>

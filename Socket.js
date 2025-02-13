@@ -11,8 +11,9 @@ const io = new Server(server, {
   }
 });
 
-const users = {}; // Store users and their socket ids
+const users = {}; 
 
+const userStatus = {};
 function getRecieverSocketId(receiverId) {
   return users[receiverId];
 }
@@ -20,29 +21,31 @@ function getRecieverSocketId(receiverId) {
 io.on('connection', (socket) => {
   console.log("connected", socket.id);
 
-  const userId = socket.handshake.query.userId; // Get the user ID from the query string
+  const userId = socket.handshake.query.userId; 
   if (userId) {
     console.log(`User connected: ${userId}`);
-    users[userId] = socket.id; // Map the userId to the socket.id
-    io.emit("getOnline", Object.keys(users)); // Emit all online users
+    users[userId] = socket.id; 
+    
+    userStatus[userId] = { isOnline: true, lastSeen: null };
+    io.emit("getOnline", { users: Object.keys(users), userStatus }); 
   }
 
   socket.on('disconnect', () => {
-    delete users[userId]; // Remove the user from the users map on disconnect
+    delete users[userId]; 
     console.log(`User disconnected: ${userId}`);
-    io.emit("getOnline", Object.keys(users)); // Emit updated list of online users
+    userStatus[userId] = { isOnline: false, lastSeen: new Date() };
+    io.emit("getOnline", { users: Object.keys(users), userStatus }); 
   });
 
-  // Handle typing event
+
   socket.on("typing", (room, sender) => {
-    console.log(`User ${sender} is typing in room: ${room._id}`);
-    io.to(users[room._id]).emit('typing', sender); // Emit the typing event to the other user in the room
-  });
+    
+    io.to(users[room._id]).emit('typing', sender); 
 
-  // Handle stop-typing event
+
   socket.on("stop-typing", (room) => {
-    console.log(`User stopped typing in room: ${room._id}`);
-    io.to(users[room._id]).emit('stop-typing'); // Notify the other user that typing has stopped
+   
+    io.to(users[room._id]).emit('stop-typing'); 
   });
 });
 

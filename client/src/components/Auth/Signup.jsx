@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Progress } from '@chakra-ui/react'
 import MovingLoader from './MovingLoader';
 
-
+import { LuMessageCircleMore } from "react-icons/lu";
 export default function Signup() {
 const [imgLoading,setImgLoading]= useState(false)
 
@@ -100,8 +100,13 @@ const [imgLoading,setImgLoading]= useState(false)
     <Toaster/>
 
     <form action=""  onSubmit={handleSubmit}>
- <div className='flex w-[100%] space-x-3 h-screen justify-center items-center'> 
+    <div className='flex flex-col md:flex-row w-[100%] space-x-3  h-screen justify-center items-center'>  
  
+ <div className='w-[98%] bg-slate-100 flex space-x-4 border-4 fixed top-0  justify-center items-center  md:hidden text-center h-[10%] rounded-md  border-blue-800 p-6 '>
+ 
+ <LuMessageCircleMore  style={{fontSize:"40px"}} /> <span className='text-3xl'>Chat App</span>
+ </div>
+ <br /> <br /><br /> <br />
  
  <div className='w-[40%] hidden md:block text-center  border-4 h-[75%] rounded-md text-white border-blue-800 p-6 bg-black'>
 <h1 className='text-2xl mt-36 '>Registeration  Form</h1>
