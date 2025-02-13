@@ -25,26 +25,28 @@ io.on('connection', (socket) => {
   if (userId) {
     console.log(`User connected: ${userId}`);
     users[userId] = socket.id; 
- 
-    io.emit("getOnline",Object.keys(users));
+    
+
+    io.emit("getOnline", Object.keys(users)); 
   }
 
   socket.on('disconnect', () => {
     delete users[userId]; 
     console.log(`User disconnected: ${userId}`);
-    io.emit("getOnline",Object.keys(users));
+   
+    io.emit("getOnline", Object.keys(users)); 
   });
 
   // Handle typing event
   socket.on("typing", (room, sender) => {
-
-    io.to(users[room._id]).emit('typing', sender); 
+    console.log(`User ${sender} is typing in room: ${room._id}`);
+    io.to(users[room._id]).emit('typing', sender); // Emit the typing event to the other user in the room
   });
 
   // Handle stop-typing event
   socket.on("stop-typing", (room) => {
-
-    io.to(users[room._id]).emit('stop-typing'); 
+    console.log(`User stopped typing in room: ${room._id}`);
+    io.to(users[room._id]).emit('stop-typing');
   });
 });
 

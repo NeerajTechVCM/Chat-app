@@ -14,20 +14,20 @@ import { Label } from "@/components/ui/label"
 
 export default function HeaderR() {
   const { selectconversation, setSelectconversation } = useConversation();
-  const { onlineUsers} = useSocketContext(); // Assuming userStatus contains lastSeen info
+  const { onlineUsers, userStatus } = useSocketContext(); // Assuming userStatus contains lastSeen info
   const { isTyping } = useTyping();
 
-  
+
   const getOnlineStatus = (userId) => {
-    onlineUsers.includes(userId) ? 'Online' : 'Offline'
+     return onlineUsers.includes(userId) ? 'Online' : 'Offline'
   }
 
-  
+ 
   const getOnlineDotStatus = (userId) => {
     return onlineUsers.includes(userId) ? 'bg-green-600' : 'bg-gray-600'
   }
 
-
+  // Get the color for the online/offline text status
   const getOnlineStatusColor = (userId) => {
     return onlineUsers.includes(userId) ? 'text-blue-600' : 'text-red-600'
   }
