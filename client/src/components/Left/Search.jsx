@@ -51,7 +51,9 @@ async function handleSubmit(e){
     <Input className='m-4' type={"text"} placeholder={"Search...."}  value={query} onChange={searchHandler} />
 
   <span>
-  <FiSearch  style={{fontSize:'25px'}} className='me-8' type='submit'/>
+<button type='submit'>
+<FiSearch  style={{fontSize:'25px'}} className='me-8'/>
+</button>
 
   </span>
 

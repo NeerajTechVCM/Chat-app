@@ -24,10 +24,19 @@ export default function User({ user }) {
         <div className='flex space-x-5 items-center justify-start'>
           <div>
             
-            <Avatar>
-              <AvatarImage src={user.profile ? user.profile : ""} />
-              <AvatarFallback>{user.username.charAt(0).toUpperCase()}</AvatarFallback>
-            </Avatar>
+
+            
+
+            <Avatar className="relative">
+            <AvatarImage src={user.profile ? user.profile : ""} />
+  <AvatarFallback>{user.username.charAt(0).toUpperCase()}</AvatarFallback>
+
+  {/* Online status indicator */}
+  <div className={`absolute top-0 right-0 w-4 h-4 rounded-full ${isOnline ? 'bg-green-600' : 'bg-gray-600'} border-2 border-white`}/>
+</Avatar>
+
+            
+              
 
           </div>
 
@@ -38,9 +47,7 @@ export default function User({ user }) {
 
 
               </div>
-              <div>
-                <h3 className={`${isOnline ? 'text-blue-600' : 'text-red-600'}`}>{isOnline ? "Online" : "Offline"}</h3>
-              </div>
+            
             </div>
             <div>
               <span className='text-blue-500'>{user.email}</span>

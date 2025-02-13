@@ -160,7 +160,7 @@ export default function Profile() {
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
-              Username
+              Name
             </Label>
             <Input type={"text"} id={"username"} placeholder={auth.username} name={"username"} value={formdata.username} className="border col-span-3" onChange={inputHandle} />
           </div>
