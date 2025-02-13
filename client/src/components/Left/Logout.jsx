@@ -6,9 +6,10 @@ import {
 } from "@/components/ui/hover-card"
 import { MdChat } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
 import { useAuth } from '@/Context/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
+import Profile from '../profile/Profile';
 
 
 export default function Logout() {
@@ -58,13 +59,8 @@ export default function Logout() {
             <HoverCardTrigger>
            
    <div>
-   <a  href="/profile" className='cursor-pointer'>   <Avatar>
-  <AvatarImage src={ auth.image?auth.image:''} />
-  <AvatarFallback>
-  {auth.username ? auth.username.charAt(0).toUpperCase() : 'CN'}
-</AvatarFallback>
-</Avatar></a>
-      
+ 
+      <Profile/>
 
      </div>
             </HoverCardTrigger>

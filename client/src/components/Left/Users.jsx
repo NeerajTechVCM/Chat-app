@@ -3,6 +3,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import User from './User';
 import { useAuth } from '@/Context/AuthProvider';
 import { useSearch } from '@/Context/SearchUserContext';
+import { Button } from '../ui/button';
+
 
 
 
@@ -16,7 +18,7 @@ export default function Users() {
   useEffect(() => {
     async function fetchUsers() {
       try {
-        const result = await fetch("/getAllUsers", {
+        const result = await fetch("http://localhost:8080/getAllUsers", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -61,6 +63,10 @@ export default function Users() {
 ) : (
   <div>No users available.</div>
 ))}
+
+{
+  searchResults.length > 0?<a href='/'><Button href="/">Back to home </Button></a>:""
+}
     </div>
 
 

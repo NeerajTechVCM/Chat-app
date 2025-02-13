@@ -9,8 +9,7 @@ import { Navigate, Route, Routes, useNavigate } from "react-router"
 import { BrowserRouter } from 'react-router'
 import { useAuth } from './Context/AuthProvider'
 import { Toaster } from 'react-hot-toast'
-import Profile from './components/profile/Profile'
-import EditProfile from './components/profile/EditProfile'
+
 
 export default function App() {
   const [auth,setAuth]=useAuth();
@@ -35,8 +34,7 @@ export default function App() {
    <Right/>
    </div>
    </> }/>
-   <Route path='/profile' element={   <Profile/>}/>
-   <Route path='/editProfile' element={   <EditProfile/>}/>
+
 
    </Routes>
    </BrowserRouter>

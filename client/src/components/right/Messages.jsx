@@ -102,6 +102,7 @@ export default function Messages() {
           ))
         )}
         {isTyping && <Typing />}
+        
       </div>
     </>
   );

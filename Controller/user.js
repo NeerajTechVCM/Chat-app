@@ -169,16 +169,32 @@ module.exports.filteruser = async (req, res) => {
 
 
 
-  module.exports .updateProfile = async(req,res)=>{
-    const { image } = req.body;
-    console.log(image)
+  module.exports.updateProfile = async (req, res) => {
+    const {username,email}=req.body.formdata;
+    const {image} =req.body;
     const userId = req.user.id;
-
-    try {
   
-      const updatedUser = await User.findByIdAndUpdate(userId, { profile:image }, { new: true });
+    if (!username && !email && !image) {
+      return res.status(400).json({ msg: 'No fields to update provided', success: false });
+    }
+    const user_name=await User.findOne({username});
+        if(user_name){
+            return res.json({msg:"Username must be unique",success:false});
+        }
+   const updateData={};
+    if (username){
+       updateData.username = username;
+    }
+    if (email){
+      updateData.email = email;
+    } 
+    if (image){
+      updateData.profile = image;
+    } 
+  
+    try {
+      const updatedUser = await User.findByIdAndUpdate(userId, updateData, { new: true });
       if (updatedUser) {
-        console.log("success:profile")
         res.json({
           username: updatedUser.username,
           email: updatedUser.email,
@@ -189,9 +205,7 @@ module.exports.filteruser = async (req, res) => {
           success: true
         });
       } else {
-
         res.json({
-
           msg: "An error occurred while updating profile",
           success: false
         });
@@ -200,5 +214,5 @@ module.exports.filteruser = async (req, res) => {
       console.error(error);
       res.status(500).json({ message: 'Server error' });
     }
-  }
-
+  };
+  

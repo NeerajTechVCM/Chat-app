@@ -8,8 +8,9 @@ import {
 } from "@/components/ui/popover"
 import { Label } from "@/components/ui/label"
 import { FiLogOut } from "react-icons/fi";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
 import toast, { Toaster } from 'react-hot-toast';
+import Profile from '../profile/Profile';
 
 export default function Header() {
   const [auth,setAuth]=useAuth();
@@ -35,14 +36,9 @@ export default function Header() {
                 </div>
                 <div className="flex justify-center items-center space-x-3">
 
-                <a  href="/profile" className='cursor-pointer'>     <Label htmlFor="profile">   <Avatar>
-         <AvatarImage src={ auth.image?auth.image:''} />
-         <AvatarFallback>
-         {auth.username ? auth.username.charAt(0).toUpperCase() : 'CN'}
-       </AvatarFallback>
-                  </Avatar></Label></a>
+                   <Label htmlFor="profile">  <Profile/></Label>
              
-                  <a id='profile' href="/profile" className='cursor-pointer'>Profile</a>
+                  <p>Profile</p>
                 </div>
 
               </div>

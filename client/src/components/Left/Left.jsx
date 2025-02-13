@@ -17,7 +17,7 @@ window.innerWidth<=768?(selectconversation?(
  <div className="bg-gray-300 px-1 h-screen w-full" >
      <HeaderR/>
         <Messages/>
-        <TypingBox/>
+      <TypingBox/>
  </div>
 
 ):(<div className=" bg-gray-300 px-7 h-screen w-[100%] md:w-[50%] lg:w-[40%]">
