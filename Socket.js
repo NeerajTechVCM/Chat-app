@@ -37,14 +37,15 @@ io.on('connection', (socket) => {
     io.emit("getOnline", { users: Object.keys(users), userStatus }); 
   });
 
-
+  // Handle typing event
   socket.on("typing", (room, sender) => {
-    
+
     io.to(users[room._id]).emit('typing', sender); 
+  });
 
-
+  // Handle stop-typing event
   socket.on("stop-typing", (room) => {
-   
+
     io.to(users[room._id]).emit('stop-typing'); 
   });
 });
