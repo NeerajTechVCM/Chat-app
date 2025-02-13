@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label"
 
 export default function HeaderR() {
   const { selectconversation, setSelectconversation } = useConversation();
-  const { onlineUsers, userStatus } = useSocketContext(); // Assuming userStatus contains lastSeen info
+  const { onlineUsers} = useSocketContext(); // Assuming userStatus contains lastSeen info
   const { isTyping } = useTyping();
 
   
