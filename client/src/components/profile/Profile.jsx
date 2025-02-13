@@ -80,7 +80,7 @@ export default function Profile() {
        e.preventDefault();
        try {
          
-         const result = await fetch('http://localhost:8080/updateProfile', {
+         const result = await fetch('/updateProfile', {
            method: 'PUT',
            headers: {
              'Content-Type': 'application/json',

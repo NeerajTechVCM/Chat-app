@@ -62,7 +62,7 @@ export default function TypingBox() {
     event.preventDefault();
 
     if (selectconversation?._id) {
-      const result = await fetch(`http://localhost:8080/send/${selectconversation._id}`, {
+      const result = await fetch(`/send/${selectconversation._id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
