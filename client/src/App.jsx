@@ -5,17 +5,26 @@ import Right from './components/right/Right'
 import Signup from './components/Auth/Signup'
 import Login from './components/Auth/Login'
 
-import { Navigate, Route, Routes, useNavigate } from "react-router"
+import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router"
 import { BrowserRouter } from 'react-router'
 import { useAuth } from './Context/AuthProvider'
 import { Toaster } from 'react-hot-toast'
 
 
 export default function App() {
-  const [auth,setAuth]=useAuth();
+  
+  const token = Cookies.get('token');
+const navigate = useNavigate();
+const location = useLocation(); 
+  useEffect(()=>{
+    if (!token && location.pathname !== '/login' && location.pathname !== '/signUp') {
+          navigate('/login');
+        }
+    
+    
+    },[navigate,location,token])
 
 
-  // console.log(auth)
   return (
    <>
   
@@ -26,7 +35,7 @@ export default function App() {
    
     <Route path='/signUp' element={<Signup/>}/>
     <Route path='/login' element={<Login/>}/>
-    <Route path='/' element={ !auth? <Navigate to={'/login'}/>:
+    <Route path='/' element={ 
    <>
    <div className="flex">
      <Logout/>
