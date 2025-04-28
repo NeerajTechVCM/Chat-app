@@ -8,7 +8,8 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-.env
+echo ".env" >> .gitignore
+
 dist
 dist-ssr
 *.local
