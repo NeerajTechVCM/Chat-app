@@ -19,11 +19,11 @@ async function handleSubmit(e){
   e.preventDefault();
 
 
-  const result=await fetch(`/search/${query}`,{
+  const result=await fetch(`http://localhost:8080/search/${query}`,{
       method:"GET",
       headers:{
           "Content-Type":'application/json',
-        
+          authorization: `Bearer ${token}`,
       },
       body:JSON.stringify(),
       credentials: 'include',
@@ -51,9 +51,7 @@ async function handleSubmit(e){
     <Input className='m-4' type={"text"} placeholder={"Search...."}  value={query} onChange={searchHandler} />
 
   <span>
-<button type='submit'>
-<FiSearch  style={{fontSize:'25px'}} className='me-8'/>
-</button>
+<button type='submit'>  <FiSearch  style={{fontSize:'25px'}} className='me-8' /></button>
 
   </span>
 

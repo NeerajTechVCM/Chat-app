@@ -2,6 +2,8 @@ import React from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import useConversation from '@/stateManagement/store'
 import { useSocketContext } from '@/Context/SocketContext';
+import { useTyping } from '@/Context/TypingContext';
+
 
 
 
@@ -11,6 +13,7 @@ export default function User({ user }) {
   const token = JSON.parse(localStorage.getItem("auth")).token;
   const { onlineUsers, setOnlineUsers } = useSocketContext();
   const isOnline = onlineUsers.includes(user._id)
+  const { isTyping } = useTyping();
 
   // console.log(selectconversation)
   async function handleclick() {
@@ -54,6 +57,7 @@ export default function User({ user }) {
             </div>
           </div>
         </div>
+
 
 
       </div>

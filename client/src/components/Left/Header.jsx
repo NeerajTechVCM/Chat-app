@@ -11,34 +11,38 @@ import { FiLogOut } from "react-icons/fi";
 
 import toast, { Toaster } from 'react-hot-toast';
 import Profile from '../profile/Profile';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
-  const [auth,setAuth]=useAuth();
-  async function handleLogout(){
-
-    const result = await fetch("http://localhost:8080/logout", {
-      method: "POST",
-      headers: {
-        "Content-Type": 'application/json'
-      },
-   
-      credentials: 'include',
-    });
-    const data = await result.json();
- 
-    if (data.success) {
+  const navigate = useNavigate();
+  const handleLogout = async ()=>{
   
-  
-      navigate("/login");
       
-      toast.success(data.msg)
-  
-    } else {
-      navigate("/");
+        const result = await fetch("/logout", {
+          method: "POST",
+          headers: {
+            "Content-Type": 'application/json'
+          },
+       
+          credentials: 'include',
+        });
+        const data = await result.json();
+        console.log(data)
+     
+        if (data.success) {
+      
+      
+          navigate("/login");
+          
+          toast.success(data.msg)
+      
+        } else {
+          navigate("/");
+        
+        }
+      }
     
-    }
-    
-  }
+
   return (
     <>
     <Toaster/>
@@ -51,7 +55,7 @@ export default function Header() {
               <div className="flex flex-col justify-between items- space-y-5">
                 <div className="flex justify-center items-center space-x-3">
                   <Label htmlFor="logout"> <FiLogOut style={{ fontSize: "25px" }} onClick={handleLogout} /></Label>
-                  <span id='logout' onClick={handleLogout}>Logout</span>
+                  <span id='logout' className='cursor-pointer' onClick={handleLogout}>Logout</span>
                 </div>
                 <div className="flex justify-center items-center space-x-3">
 

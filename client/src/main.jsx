@@ -11,20 +11,20 @@ import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-  <AuthProvider>
-    <SearchProvider>
-      <TypingProvider>
+    <AuthProvider>
+      <SearchProvider>
+        <TypingProvider>
           <SocketProvider>
-          <ChakraProvider>
-             <App />
-          </ChakraProvider>
-     
-      </SocketProvider>
-      </TypingProvider>
-    
-         
-    </SearchProvider>
- 
-  </AuthProvider>
-  </BrowserRouter>
-)
+            <ChakraProvider>
+              <App />
+            </ChakraProvider>
+
+          </SocketProvider>
+        </TypingProvider>
+
+
+      </SearchProvider>
+
+    </AuthProvider>
+    </BrowserRouter>
+      );

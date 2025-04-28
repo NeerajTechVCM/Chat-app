@@ -15,7 +15,8 @@ export default function Right() {
      <>
       <HeaderR/>
         <Messages/>
-      <TypingBox/>
+        <TypingBox/>
+  
         </>
         :<div className='flex h-full w-full  text-xl justify-center items-center bg-slate-100'    >Welcome to the Chat App <br/>Please Select the friend for Chat </div>}
       </div>

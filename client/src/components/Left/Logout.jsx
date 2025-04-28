@@ -15,13 +15,13 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Logout() {
 
- const [auth,setAuth]=useAuth();
+
 
 const navigate = useNavigate();
 const handleLogout = async ()=>{
 
     
-      const result = await fetch("http://localhost:8080/logout", {
+      const result = await fetch("/logout", {
         method: "POST",
         headers: {
           "Content-Type": 'application/json'
@@ -30,6 +30,7 @@ const handleLogout = async ()=>{
         credentials: 'include',
       });
       const data = await result.json();
+      console.log(data)
    
       if (data.success) {
     
