@@ -7,8 +7,10 @@ import SearchProvider from './Context/SearchUserContext'
 import SocketProvider from './Context/SocketContext'
 import TypingProvider from './Context/TypingContext'
 import { ChakraProvider } from '@chakra-ui/react'
+import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
   <AuthProvider>
     <SearchProvider>
       <TypingProvider>
@@ -23,5 +25,6 @@ createRoot(document.getElementById('root')).render(
          
     </SearchProvider>
  
-  </AuthProvider>,
+  </AuthProvider>
+  </BrowserRouter>
 )
