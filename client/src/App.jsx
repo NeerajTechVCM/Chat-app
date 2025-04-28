@@ -13,8 +13,7 @@ import { Toaster } from 'react-hot-toast'
 
 export default function App() {
   
-  const token = Cookies.get('jwt');
-  console.log(token)
+  const token = Cookies.get('token');
 const navigate = useNavigate();
 const location = useLocation(); 
   useEffect(()=>{
@@ -36,7 +35,7 @@ const location = useLocation();
    
     <Route path='/signUp' element={<Signup/>}/>
     <Route path='/login' element={<Login/>}/>
-    <Route path='/' element={ 
+    <Route path='/' element={ !auth?<Navigate to={'/login'} >:
    <>
    <div className="flex">
      <Logout/>
