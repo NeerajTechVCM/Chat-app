@@ -22,7 +22,7 @@ export default function Users() {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            authorization: `Bearer ${token}`,
+         
           },
         });
 

@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 module.exports.secureRoute = (req, res, next) => {
-  const token = req.cookies.jwt || req.headers.authorization?.split(' ')[1];  
+  const token = req.cookies.jwt;  
   
   if (!token) {
     console.log("No token found");
@@ -9,7 +9,7 @@ module.exports.secureRoute = (req, res, next) => {
   }
   // console.log(token)
   try {
-    const decoded = jwt.verify(token, 'mysecrettoken');  
+    const decoded = jwt.verify(token, 'CLIENT_SECRET_KEY');  
     // console.log("Decoded user:", decoded);  
   
 

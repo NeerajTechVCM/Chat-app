@@ -4,7 +4,7 @@ import Logout from './components/Left/Logout'
 import Right from './components/right/Right'
 import Signup from './components/Auth/Signup'
 import Login from './components/Auth/Login'
-
+import Cookies from 'js-cookie';
 import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router"
 import { BrowserRouter } from 'react-router'
 import { useAuth } from './Context/AuthProvider'
@@ -13,7 +13,8 @@ import { Toaster } from 'react-hot-toast'
 
 export default function App() {
   
-  const token = Cookies.get('token');
+  const token = Cookies.get('jwt');
+  console.log(token)
 const navigate = useNavigate();
 const location = useLocation(); 
   useEffect(()=>{

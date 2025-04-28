@@ -22,6 +22,7 @@ app.use(cors({
 app.use(cookieParser());
 app.post("/signUp",userRoute.signUp);
 app.post("/login",userRoute.login);
+app.post('/logout',userRoute.logout);
 app.get("/getAllUsers",middleware.secureRoute,userRoute.getAllUsers);
 app.put("/updateProfile",middleware.secureRoute,userRoute.updateProfile);
     

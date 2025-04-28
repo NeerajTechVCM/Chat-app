@@ -10,18 +10,41 @@ import { FiLogOut } from "react-icons/fi";
 import { useAuth } from '@/Context/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
 import Profile from '../profile/Profile';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Logout() {
 
  const [auth,setAuth]=useAuth();
-// console.log(auth)
-  function handleLogout(){
 
-    localStorage.clear();
-    setAuth();
-    toast.success("Logout successfully")
-  }
+const navigate = useNavigate();
+const handleLogout = async ()=>{
+
+    
+      const result = await fetch("http://localhost:8080/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": 'application/json'
+        },
+     
+        credentials: 'include',
+      });
+      const data = await result.json();
+   
+      if (data.success) {
+    
+    
+        navigate("/login");
+        
+        toast.success(data.msg)
+    
+      } else {
+        navigate("/");
+      
+      }
+    }
+  
+
   return (
     <>
     <Toaster/>

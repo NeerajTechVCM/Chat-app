@@ -33,7 +33,7 @@ export default function Messages() {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              authorization: `Bearer ${token}`,
+             
             },
           });
 

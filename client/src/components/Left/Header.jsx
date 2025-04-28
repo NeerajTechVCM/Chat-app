@@ -14,11 +14,30 @@ import Profile from '../profile/Profile';
 
 export default function Header() {
   const [auth,setAuth]=useAuth();
-  function handleLogout(){
+  async function handleLogout(){
 
-    localStorage.clear();
-    setAuth();
-    toast.success("Logout successfully")
+    const result = await fetch("http://localhost:8080/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": 'application/json'
+      },
+   
+      credentials: 'include',
+    });
+    const data = await result.json();
+ 
+    if (data.success) {
+  
+  
+      navigate("/login");
+      
+      toast.success(data.msg)
+  
+    } else {
+      navigate("/");
+    
+    }
+    
   }
   return (
     <>

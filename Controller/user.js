@@ -13,13 +13,6 @@ cloudinary.config({
     api_secret:"EtHWFAKRl_fpYPVNCAKzOKPc4hM",
 });
 
-const generateToken = (id, res) => {
-    const token = jwt.sign({ id }, 'mysecrettoken', {
-      expiresIn: "1d"
-    });
-    res.cookie("jwt", token);  
-    return token;  
-  };
   
 module.exports.signUp=async(req,res)=>{
     
@@ -60,17 +53,36 @@ module.exports.signUp=async(req,res)=>{
   await user.save().then(()=>console.log("User Signup successfully"))
 .catch((err)=>console.log(err))
 
-console.log(user._id)
-   return res.json({
+const token = jwt.sign(
+  {
+    id: user._id,
+    email: user.email,
+    name: user.name,
+  },
+  "CLIENT_SECRET_KEY",
+  { expiresIn: "5d" }
+);
+
+
+const expireDate = new Date();
+expireDate.setDate(expireDate.getDate() + 5);  // 5 days from today
+res.cookie("jwt", token, {
+  httpOnly: false,
+  secure: false,
+  expires: expireDate,
+  path: "/",
+}).json({
     
-   username:user.username,
-   email:user.email,
-   image:user.profile,
-   id:user._id, 
-   token:generateToken(user._id.toString(),res),
-   msg:"Login successfully", 
-   success:true
-  });
+  username:user.username,
+  email:user.email,
+  image:user.profile,
+  id:user._id, 
+  token,
+  msg:"Login successfully", 
+  success:true
+ });
+
+
 
 }
 module.exports.login=async(req,res)=>{
@@ -89,15 +101,33 @@ module.exports.login=async(req,res)=>{
      
     const UserPassword = await bcryptjs.compare(password,checkuser.password);
     if(UserPassword){
-        return res.json({
-          username:checkuser.username,
+      const token = jwt.sign(
+        {
+          id: checkuser._id,
           email:checkuser.email,
-          image:checkuser.profile,
-          id:checkuser._id, 
-          token:generateToken(checkuser._id.toString(),res),
-          msg:"Login successfully", 
-          success:true
-        });
+          name: checkuser.name,
+        },
+        "CLIENT_SECRET_KEY",
+        { expiresIn: "5d" }
+      );
+   
+    const expireDate = new Date();
+    expireDate.setDate(expireDate.getDate() + 5);  
+    res.cookie("jwt", token, {
+      httpOnly: false,
+      secure: false, 
+      expires: expireDate,
+      path: "/",
+    }).json({
+      username:checkuser.username,
+      email:checkuser.email,
+      image:checkuser.profile,
+      id:checkuser._id, 
+      token,
+      msg:"Login successfully", 
+      success:true
+    });
+       
     }
     else{
         return res.json({msg:"incorrect password",success:false});
@@ -214,5 +244,11 @@ module.exports.filteruser = async (req, res) => {
       console.error(error);
       res.status(500).json({ message: 'Server error' });
     }
+  };
+  module.exports.logout = (req, res) => {
+    res.clearCookie("jwt").json({
+      success: true,
+      msg: "Logged out successfully!",
+    });
   };
   
