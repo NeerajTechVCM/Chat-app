@@ -9,21 +9,12 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router"
 import { BrowserRouter } from 'react-router'
 import { useAuth } from './Context/AuthProvider'
 import { Toaster } from 'react-hot-toast'
+import CookieExpiryRedirect from './CookieExpire'
 
 
 export default function App() {
   
-  const token = Cookies.get('jwt');
-  console.log(token)
-const navigate = useNavigate();
-const location = useLocation(); 
-  useEffect(()=>{
-    if (!token && location.pathname !== '/login' && location.pathname !== '/signUp') {
-          navigate('/login');
-        }
-    
-    
-    },[navigate,location,token])
+ 
 
 
   return (
@@ -33,7 +24,7 @@ const location = useLocation();
   <Toaster/>
 
    <Routes>
-   
+   <CookieExpiryRedirect /> 
     <Route path='/signUp' element={<Signup/>}/>
     <Route path='/login' element={<Login/>}/>
     <Route path='/' element={ 
